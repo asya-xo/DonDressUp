@@ -10,13 +10,13 @@ export class WardrobeScene extends Phaser.Scene {
     this.load.audio('song','assets/song.mp3');
     this.load.image('backB', 'assets/back_button.png');
     this.load.audio('buttonSD', 'assets/button_sound.mp3');
-    this.load.image('gurl2', 'assets/gurltry2.png');
+    this.load.image('baseB', 'assets/base_Body.png');
     this.load.image('Q1', 'assets/Q1.png');
     this.load.image('A1', 'assets/A1.png');
     this.load.image('A2', 'assets/A2.png');
-    this.load.image('gurlblink2', 'assets/gurlblink2.png');
+    this.load.image('baseBlink', 'assets/Base_Body_Blink.png');
     this.load.audio('blink', 'assets/blink.mp3');
-    this.load.image('gurlsmile', 'assets/gurlsmile.png');
+    this.load.image('baseSmile', 'assets/Base_Body_Smiling.png');
   }
 
   create() {
@@ -60,7 +60,7 @@ export class WardrobeScene extends Phaser.Scene {
     backBtn.setPosition(30, height - 30);
 
     //Adding the girl! + smiling
-    this.girl = this.add.image(width / 2 - 120, height / 2.1, 'gurlsmile');
+    this.girl = this.add.image(width / 2 - 120, height / 2.1, 'baseSmile');
     this.blinkSound = this.sound.add('blink', {
       volume: 0.2
     });
@@ -68,17 +68,17 @@ export class WardrobeScene extends Phaser.Scene {
 
      // After 2 seconds, switch to normal and start blinking
     this.time.delayedCall(2000, () => {
-      this.girl.setTexture('gurl2');
+      this.girl.setTexture('baseB');
 
       this.time.addEvent({
         delay: 3000,
         loop: true,
         callback: () => {
-          this.girl.setTexture('gurlblink2');
+          this.girl.setTexture('baseBlink');
           this.blinkSound.play();
 
           this.time.delayedCall(120, () => {
-            this.girl.setTexture('gurl2');
+            this.girl.setTexture('baseB');
           });
         }
       });
