@@ -17,6 +17,9 @@ export class WardrobeScene extends Phaser.Scene {
     this.load.image('baseBlink', 'assets/Base_Body_Blink.png');
     this.load.audio('blink', 'assets/blink.mp3');
     this.load.image('baseSmile', 'assets/Base_Body_Smiling.png');
+    this.load.image('Q2_A', 'assets/Q2_A.png');
+    this.load.image('Q2_B', 'assets/Q2_B.png');
+    this.load.image('LetsGo', 'assets/LetsGo.png');
   }
 
   create() {
@@ -84,8 +87,51 @@ export class WardrobeScene extends Phaser.Scene {
       });
     });
 
+    //Adding the question and answer images
     this.q1 = this.add.image(width * 0.70, height * 0.2, 'Q1');
     this.a1 = this.add.image(width * 0.70, height * 0.45, 'A1');
     this.a2 = this.add.image(width * 0.70 - 10, height * 0.60, 'A2');
+    
+    //Making the answer options clickable
+    this.a1.setInteractive({ useHandCursor: true });
+    this.a2.setInteractive({ useHandCursor: true });
+
+    //Adding click sound and effect to answer options
+    this.a1.on('pointerdown', () => {
+      clickSfx.play();
+      press(this.a1);
+
+      this.q1.setTexture('Q2_A');
+      this.a1.setVisible(false);
+      this.a2.setVisible(false);
+       //Adding the "Let's Go!" image after answering the question
+
+      this.time.delayedCall(2000, () => {
+      this.letsGo = this.add.image(
+      this.scale.width * 0.70,
+      this.scale.height * 0.8,
+      'LetsGo'
+   );
+    });
+
+  });
+    this.a2.on('pointerdown', () => {
+      clickSfx.play();
+      press(this.a2);
+
+      this.q1.setTexture('Q2_B');
+
+      this.a1.setVisible(false);
+      this.a2.setVisible(false);
+      //Adding the "Let's Go!" image after answering the question
+
+      this.time.delayedCall(2000, () => {
+      this.letsGo = this.add.image(
+      this.scale.width * 0.70,
+      this.scale.height * 0.8,
+      'LetsGo'
+      );
+    });
+   });
   }
 }
