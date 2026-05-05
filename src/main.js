@@ -3,6 +3,7 @@ import { Settings } from './scenes/Settings.js';
 import { Lore } from './scenes/Lore.js';
 import { Welcome } from './scenes/Welcome.js';
 import { WardrobeScene } from './scenes/WardrobeScene.js'
+import { WardrobeScene2 } from './scenes/WardrobeScene2.js'
 
 
 const config = {
@@ -15,7 +16,7 @@ const config = {
     backgroundColor: '#000000',
     pixelArt: false,
     scene: [
-        Start, Settings, Lore, Welcome, WardrobeScene
+        Start, Settings, Lore, Welcome, WardrobeScene, WardrobeScene2
     ],
     scale: {
         mode: Phaser.Scale.FIT,

@@ -112,6 +112,12 @@ export class WardrobeScene extends Phaser.Scene {
       this.scale.height * 0.8,
       'LetsGo'
    );
+
+   //Lets go to the next wardrobe scene
+    this.letsGo.setInteractive({ useHandCursor: true });
+    this.letsGo.on('pointerdown', () => {
+      this.scene.start('WardrobeScene2');
+    });
     });
 
   });
@@ -131,6 +137,11 @@ export class WardrobeScene extends Phaser.Scene {
       this.scale.height * 0.8,
       'LetsGo'
       );
+      //Lets go to the next wardrobe scene 
+      this.letsGo.setInteractive({ useHandCursor: true });
+      this.letsGo.on('pointerdown', () => {
+        this.scene.start('WardrobeScene2');
+    });
     });
    });
   }
