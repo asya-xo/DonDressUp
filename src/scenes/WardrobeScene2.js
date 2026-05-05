@@ -10,6 +10,7 @@ export class WardrobeScene2 extends Phaser.Scene {
     this.load.image('sunglasses_pink', 'assets/sunglasses_pink.png');
     this.load.image('backB', 'assets/back_button.png');
     this.load.audio('buttonSD', 'assets/button_sound.mp3');
+    this.load.image('closet', 'assets/closet.png');
   }
 
   create() {
@@ -17,7 +18,10 @@ export class WardrobeScene2 extends Phaser.Scene {
     const height = this.scale.height;
 
     this.add.rectangle(0, 0, width, height, 0xff9ec8).setOrigin(0);
-
+    
+    //Adding the closet
+    this.add.image(width * 0.65, height * 0.5, 'closet');
+    
     this.girl = this.add.image(width * 0.28, height * 0.5, 'baseB');
 
     this.girlSunglasses = this.add.image(width * 0.28, height * 0.5, 'sunglasses_pink');
