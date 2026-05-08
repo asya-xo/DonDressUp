@@ -6,11 +6,12 @@ export class WardrobeScene2 extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('baseB', 'assets/Base_Body.png');
+    this.load.image('body', 'assets/DressUpSceneBody.png');
     this.load.image('sunglasses_pink', 'assets/sunglasses_pink.png');
     this.load.image('backB', 'assets/back_button.png');
     this.load.audio('buttonSD', 'assets/button_sound.mp3');
     this.load.image('closet', 'assets/closet.png');
+    this.load.image('sunglasses_black', 'assets/sunglasses_black.png');
   }
 
   create() {
@@ -22,13 +23,14 @@ export class WardrobeScene2 extends Phaser.Scene {
     //Adding the closet
     this.add.image(width * 0.65, height * 0.5, 'closet');
     
-    this.girl = this.add.image(width * 0.28, height * 0.5, 'baseB');
+    this.girl = this.add.image(width * 0.28, height * 0.5, 'body');
 
     this.girlSunglasses = this.add.image(width * 0.28, height * 0.5, 'sunglasses_pink');
     this.girlSunglasses.setVisible(false);
 
     const glasses = [
-      { key: 'sunglasses_pink', x: width * 0.58, y: height * 0.3 }
+      { key: 'sunglasses_pink', x: width * 0.58, y: height * 0.3 },
+      { key: 'sunglasses_black', x: width * 0.72, y: height * 0.3 }
     ];
 
     glasses.forEach(g => {
