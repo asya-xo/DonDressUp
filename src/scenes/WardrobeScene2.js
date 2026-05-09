@@ -140,10 +140,11 @@ headsetsItem.on('pointerdown', () => {
 });
 
 // Bear hat in closet
-const bearhatItem = this.add.image(width * 0.7, height * 0.4, 'bearhat')
-  .setScale(0.3)
+
+const bearhatItem = this.add.image(width * 0.77, height * 0.25, 'bearhat')
+.setScale(0.2)
   .setInteractive({ useHandCursor: true, pixelPerfect: true });
-  
+
 bearhatItem.on('pointerdown', () => {
   if (this.equippedItems.bearhat) {
     this.girlBearhat.setVisible(false);
