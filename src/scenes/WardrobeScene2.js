@@ -36,7 +36,7 @@ export class WardrobeScene2 extends Phaser.Scene {
     glasses.forEach(g => {
       const item = this.add.image(g.x, g.y, g.key)
         .setScale(0.3)
-        .setInteractive({ useHandCursor: true, pixelPerfect: true });
+        .setInteractive({ useHandCursor: true, pixelPerfect: true });  //enabling pixel perfect interaction for better click accuracy
 
       item.on('pointerdown', () => {
         if (this.equippedItems.sunglasses === g.key) {
