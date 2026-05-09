@@ -13,6 +13,7 @@ export class WardrobeScene2 extends Phaser.Scene {
     this.load.image('closet', 'assets/closet.png');
     this.load.image('top1', 'assets/top_1.png');
     this.load.image('top2', 'assets/top_2.png');
+    this.load.image('pants1', 'assets/pants_1.png');
   }
 
   create() {
@@ -36,6 +37,10 @@ export class WardrobeScene2 extends Phaser.Scene {
     // Top 2 overlay on girl hidden by default
     this.girlTop2 = this.add.image(width * 0.28, height * 0.5, 'top2');
     this.girlTop2.setVisible(false);
+
+    // Pants overlay on girl hidden by default
+    this.girlPants = this.add.image(width * 0.28, height * 0.5, 'pants1');
+    this.girlPants.setVisible(false);
 
     const sunglassesColors = [
      0xff9ec8, // pink
@@ -99,6 +104,41 @@ const topItem = this.add.image(width * 0.58, height * 0.5, 'top1')
 const topItem2 = this.add.image(width * 0.65, height * 0.5, 'top2')
   .setScale(0.6)
   .setInteractive({ useHandCursor: true, pixelPerfect: true });
+
+  // Pants in closet
+const pantsItem = this.add.image(width * 0.58, height * 0.55, 'pants1')
+  .setScale(0.4)
+  .setInteractive({ useHandCursor: true, pixelPerfect: true });
+
+// Pants color palette (hidden by default)
+const pantsPalette = this.add.container(width * 0.35, height * 0.75);
+pantsPalette.setVisible(false);
+
+topColors.forEach((color, i) => {
+  const swatch = this.add.circle(i * 30 - 75, 0, 12, color)
+    .setInteractive({ useHandCursor: true });
+  swatch.on('pointerdown', () => {
+    this.girlPants.setTint(color);
+    this.girlPants.setVisible(true);
+    pantsItem.setTint(color);
+  });
+  pantsPalette.add(swatch);
+});
+
+// Click pants to show/hide
+pantsItem.on('pointerdown', () => {
+  if (this.equippedItems.pants) {
+    this.girlPants.setVisible(false);
+    this.equippedItems.pants = null;
+    pantsPalette.setVisible(false);
+    pantsItem.clearTint();
+  } else {
+    this.girlPants.setTint(0xffffff);
+    this.girlPants.setVisible(true);
+    this.equippedItems.pants = 'pants1';
+    pantsPalette.setVisible(true);
+  }
+});
 
 // Color palette 2 (hidden by default)
 const palette2 = this.add.container(width * 0.35, height * 0.75);
