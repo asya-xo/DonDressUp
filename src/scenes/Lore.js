@@ -27,7 +27,7 @@ export class Lore extends Phaser.Scene {
     love.setOrigin(0.5, 0);
 
     techS.setPosition(width / 2, 120);
-    ty.setPosition(width / 2, techS.y + techS.displayHeight);
+    ty.setPosition(width / 2, techS.y + techS.displayHeight - 50);
     love.setPosition(width * 0.20, height * 0.05);
   
 
