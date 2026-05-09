@@ -1,6 +1,6 @@
 <br>**name:** DON dressup 🩷 
 <br>**what is it:** a dress up webbrowser game 
-<br>**made with:** javacript, phaser, canva, krita
+<br>**made with:** javacript (code), phaser (game engine), canva (buttons, signs), krita (clothing assets + model) 
 <br>**lore:** made for our little cousin who loves fashion very much
 <br>**more lore:** our cousin drew the clothing assets on paper, and we drew them digitally (or tried to) 
 
