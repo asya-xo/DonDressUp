@@ -35,8 +35,8 @@ export class WardrobeScene2 extends Phaser.Scene {
 
     glasses.forEach(g => {
       const item = this.add.image(g.x, g.y, g.key)
-        .setScale(0.4)
-        .setInteractive({ useHandCursor: true });
+        .setScale(0.3)
+        .setInteractive({ useHandCursor: true, pixelPerfect: true });
 
       item.on('pointerdown', () => {
         if (this.equippedItems.sunglasses === g.key) {
@@ -48,7 +48,7 @@ export class WardrobeScene2 extends Phaser.Scene {
           this.equippedItems.sunglasses = g.key;
         }
       });
-    }); // ← forEach ends here
+    });
 
     // Back button
     const clickSfx = this.sound.add('buttonSD', { volume: 0.6 });
