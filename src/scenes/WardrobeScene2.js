@@ -12,6 +12,7 @@ export class WardrobeScene2 extends Phaser.Scene {
     this.load.audio('buttonSD', 'assets/button_sound.mp3');
     this.load.image('closet', 'assets/closet.png');
     this.load.image('top1', 'assets/top_1.png');
+    this.load.image('top2', 'assets/top_2.png');
   }
 
   create() {
@@ -31,6 +32,10 @@ export class WardrobeScene2 extends Phaser.Scene {
     //Adding the top overlay on girl hidden by default, 
     this.girlTop = this.add.image(width * 0.28, height * 0.5, 'top1');
     this.girlTop.setVisible(false);
+
+    // Top 2 overlay on girl hidden by default
+    this.girlTop2 = this.add.image(width * 0.28, height * 0.5, 'top2');
+    this.girlTop2.setVisible(false);
 
     const sunglassesColors = [
      0xff9ec8, // pink
@@ -77,6 +82,7 @@ glassesItem.on('pointerdown', () => {
 
     // Color swatches for tops!!
 const topColors = [
+  0xffffff, // white
   0xff9ec8, // pink
   0xff0000, // red
   0xc8a2c8, // purple
@@ -86,9 +92,43 @@ const topColors = [
 
 // Top in closet, just one user can choose the style but can change color
 const topItem = this.add.image(width * 0.58, height * 0.5, 'top1')
-  .setScale(0.3)
+  .setScale(0.6)
   .setInteractive({ useHandCursor: true, pixelPerfect: true });
 
+  // Top 2 in closet
+const topItem2 = this.add.image(width * 0.65, height * 0.5, 'top2')
+  .setScale(0.6)
+  .setInteractive({ useHandCursor: true, pixelPerfect: true });
+
+// Color palette 2 (hidden by default)
+const palette2 = this.add.container(width * 0.35, height * 0.75);
+palette2.setVisible(false);
+
+topColors.forEach((color, i) => {
+  const swatch = this.add.circle(i * 30 - 75, 0, 12, color)
+    .setInteractive({ useHandCursor: true });
+  swatch.on('pointerdown', () => {
+    this.girlTop2.setTint(color);
+    this.girlTop2.setVisible(true);
+    topItem2.setTint(color);
+  });
+  palette2.add(swatch);
+});
+
+// Click top2 to show/hide
+topItem2.on('pointerdown', () => {
+  if (this.equippedItems.top2) {
+    this.girlTop2.setVisible(false);
+    this.equippedItems.top2 = null;
+    palette2.setVisible(false);
+    topItem2.clearTint();
+  } else {
+    this.girlTop2.setTint(0xff9ec8);
+    this.girlTop2.setVisible(true);
+    this.equippedItems.top2 = 'top2';
+    palette2.setVisible(true);
+  }
+});
 // Color palette (hidden by default)
 const palette = this.add.container(width * 0.35, height * 0.75);
 palette.setVisible(false);
