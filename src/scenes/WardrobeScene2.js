@@ -11,7 +11,6 @@ export class WardrobeScene2 extends Phaser.Scene {
     this.load.image('backB', 'assets/back_button.png');
     this.load.audio('buttonSD', 'assets/button_sound.mp3');
     this.load.image('closet', 'assets/closet.png');
-    this.load.image('sunglasses_black', 'assets/sunglasses_black.png');
     this.load.image('top1', 'assets/top_1.png');
   }
 
@@ -33,27 +32,48 @@ export class WardrobeScene2 extends Phaser.Scene {
     this.girlTop = this.add.image(width * 0.28, height * 0.5, 'top1');
     this.girlTop.setVisible(false);
 
-    const glasses = [
-      { key: 'sunglasses_pink', x: width * 0.58, y: height * 0.3 },
-      { key: 'sunglasses_black', x: width * 0.72, y: height * 0.3 }
+    const sunglassesColors = [
+     0xff9ec8, // pink
+     0xff0000, // red
+     0xc8a2c8, // purple
+     0x000000, // black
+     0xffdd00, // yellow
     ];
 
-    glasses.forEach(g => {
-      const item = this.add.image(g.x, g.y, g.key)
-        .setScale(0.3)
-        .setInteractive({ useHandCursor: true, pixelPerfect: true });  //enabling pixel perfect interaction for better click accuracy
+// Glasses in closet
+const glassesItem = this.add.image(width * 0.58, height * 0.3, 'sunglasses_pink')
+  .setScale(0.3)
+  .setInteractive({ useHandCursor: true, pixelPerfect: true });
 
-      item.on('pointerdown', () => {
-        if (this.equippedItems.sunglasses === g.key) {
-          this.girlSunglasses.setVisible(false);
-          this.equippedItems.sunglasses = null;
-        } else {
-          this.girlSunglasses.setTexture(g.key);
-          this.girlSunglasses.setVisible(true);
-          this.equippedItems.sunglasses = g.key;
-        }
-      });
-    });
+// Glasses color palette (hidden by default)
+const glassesPalette = this.add.container(width * 0.35, height * 0.6);
+glassesPalette.setVisible(false);
+
+sunglassesColors.forEach((color, i) => {
+  const swatch = this.add.circle(i * 30 - 75, 0, 12, color)
+    .setInteractive({ useHandCursor: true });
+  swatch.on('pointerdown', () => {
+    this.girlSunglasses.setTint(color);
+    this.girlSunglasses.setVisible(true);
+    glassesItem.setTint(color);
+  });
+  glassesPalette.add(swatch);
+});
+
+// Click glasses to show/hide
+glassesItem.on('pointerdown', () => {
+  if (this.equippedItems.sunglasses) {
+    this.girlSunglasses.setVisible(false);
+    this.equippedItems.sunglasses = null;
+    glassesPalette.setVisible(false);
+    glassesItem.clearTint();
+  } else {
+    this.girlSunglasses.setTint(0xff9ec8);
+    this.girlSunglasses.setVisible(true);
+    this.equippedItems.sunglasses = 'sunglasses_pink';
+    glassesPalette.setVisible(true);
+  }
+});
 
     // Color swatches for tops!!
 const topColors = [
