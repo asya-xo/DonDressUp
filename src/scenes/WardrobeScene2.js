@@ -48,6 +48,10 @@ export class WardrobeScene2 extends Phaser.Scene {
     this.girlHoops = this.add.image(width * 0.28, height * 0.5, 'hoops');
     this.girlHoops.setVisible(false);
 
+    // Skirt overlay  
+    this.girlSkirt = this.add.image(width * 0.28, height * 0.5, 'skirt1');
+    this.girlSkirt.setVisible(false);
+
     const sunglassesColors = [
      0xff9ec8, // pink
      0xff0000, // red
@@ -161,6 +165,41 @@ pantsItem.on('pointerdown', () => {
     this.girlPants.setVisible(true);
     this.equippedItems.pants = 'pants1';
     pantsPalette.setVisible(true);
+  }
+});
+
+// Skirt in closet — placed beside the pants
+const skirtItem = this.add.image(width * 0.65, height * 0.55, 'skirt1')
+  .setScale(0.4)
+  .setInteractive({ useHandCursor: true, pixelPerfect: true });
+
+// Skirt color palette (hidden by default)
+const skirtPalette = this.add.container(width * 0.35, height * 0.85);
+skirtPalette.setVisible(false);
+
+topColors.forEach((color, i) => {
+  const swatch = this.add.circle(i * 30 - 75, 0, 12, color)
+    .setInteractive({ useHandCursor: true });
+  swatch.on('pointerdown', () => {
+    this.girlSkirt.setTint(color);
+    this.girlSkirt.setVisible(true);
+    skirtItem.setTint(color);
+  });
+  skirtPalette.add(swatch);
+});
+
+// Click skirt to show/hide
+skirtItem.on('pointerdown', () => {
+  if (this.equippedItems.skirt) {
+    this.girlSkirt.setVisible(false);
+    this.equippedItems.skirt = null;
+    skirtPalette.setVisible(false);
+    skirtItem.clearTint();
+  } else {
+    this.girlSkirt.setTint(0xffffff);
+    this.girlSkirt.setVisible(true);
+    this.equippedItems.skirt = 'skirt1';
+    skirtPalette.setVisible(true);
   }
 });
 
