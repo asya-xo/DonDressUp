@@ -1,6 +1,6 @@
-export class Welcome extends Phaser.Scene {
+export class NameScene extends Phaser.Scene {
   constructor() {
-    super('Welcome');
+    super('NameScene');
   }
 
   preload() {
@@ -102,16 +102,12 @@ export class Welcome extends Phaser.Scene {
       });
     });
 
-    // just incase the user clicks "enter" in input field = works
     const onEnter = (e) => {
-      if (e.key === 'Enter') okBtn.emit('pointerdown');
-    };
+  if (e.key === 'Enter') {
+    e.preventDefault(); 
+    okBtn.emit('pointerdown');
+  }
+};
     input.addEventListener('keydown', onEnter);
-
-    // cleanup so it doesn't duplicate if you revisit the scene
-    this.events.once('shutdown', () => {
-      input.removeEventListener('keydown', onEnter);
-      form.style.display = 'none';
-    });
   }
 }

@@ -51,7 +51,7 @@ export class WardrobeScene extends Phaser.Scene {
       press(backBtn);
 
       this.time.delayedCall(120, () => {
-        this.scene.start('Welcome');
+        this.scene.start('NameScene');
       });
     });
 

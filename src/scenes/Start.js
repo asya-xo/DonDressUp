@@ -64,7 +64,7 @@ export class Start extends Phaser.Scene {
       press(startBtn);
 
       this.time.delayedCall(120, () => {
-        this.scene.start('Welcome');
+        this.scene.start('NameScene');
       });
     });
 

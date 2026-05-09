@@ -26,10 +26,10 @@
       background-color: #040218;
     }
 
-    /* HTML input overlay (Welcome.js will show n hide it) */
+    /* HTML input overlay (NameScene.js will show n hide it) */
     #nameForm {
       position: absolute;
-      display: none;           /* hidden until Welcome.js turns it on */
+      display: none;           /* hidden until NameScene.js turns it on */
       transform: translate(-50%, -50%);
       z-index: 9999;
     }
@@ -64,7 +64,6 @@
 <body>
   <div id="game-container"></div>
 
-  <!-- For the input field (Welcome.js will control this by id) -->
   <form id="nameForm" autocomplete="off">
     <input
       id="nameInput"

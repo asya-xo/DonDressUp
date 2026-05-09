@@ -16,6 +16,8 @@ export class WardrobeScene2 extends Phaser.Scene {
     this.load.image('pants1', 'assets/pants_1.png');
     this.load.image('hoops', 'assets/hoops.png');
     this.load.image('skirt1', 'assets/skirt.png');
+    this.load.image('headsets', 'assets/headsets.png');
+    this.load.image('bearhat', 'assets/bearhat.png');
   }
 
   create() {
@@ -51,6 +53,14 @@ export class WardrobeScene2 extends Phaser.Scene {
     // Skirt overlay  
     this.girlSkirt = this.add.image(width * 0.28, height * 0.5, 'skirt1');
     this.girlSkirt.setVisible(false);
+
+    // Headsets overlay
+    this.girlHeadsets = this.add.image(width * 0.28, height * 0.5, 'headsets');
+    this.girlHeadsets.setVisible(false);
+
+    // Bear hat overlay
+    this.girlBearhat = this.add.image(width * 0.28, height * 0.5, 'bearhat');
+    this.girlBearhat.setVisible(false);
 
     const sunglassesColors = [
      0xff9ec8, // pink
@@ -110,6 +120,38 @@ hoopsItem.on('pointerdown', () => {
   } else {
     this.girlHoops.setVisible(true);
     this.equippedItems.hoops = 'hoops';
+  }
+});
+
+// Headsets in closet
+const headsetsItem = this.add.image(width * 0.7, height * 0.3, 'headsets')
+  .setScale(0.3)
+  .setInteractive({ useHandCursor: true, pixelPerfect: true });
+
+headsetsItem.on('pointerdown', () => {
+  if (this.equippedItems.headsets) {
+    this.girlHeadsets.setVisible(false);
+    this.equippedItems.headsets = null;
+    headsetsItem.clearTint();
+  } else {
+    this.girlHeadsets.setVisible(true);
+    this.equippedItems.headsets = 'headsets';
+  }
+});
+
+// Bear hat in closet
+const bearhatItem = this.add.image(width * 0.7, height * 0.4, 'bearhat')
+  .setScale(0.3)
+  .setInteractive({ useHandCursor: true, pixelPerfect: true });
+  
+bearhatItem.on('pointerdown', () => {
+  if (this.equippedItems.bearhat) {
+    this.girlBearhat.setVisible(false);
+    this.equippedItems.bearhat = null;
+    bearhatItem.clearTint();
+  } else {
+    this.girlBearhat.setVisible(true);
+    this.equippedItems.bearhat = 'bearhat';
   }
 });
 
