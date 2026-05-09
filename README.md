@@ -11,7 +11,7 @@
 <br>**try it out!**
 <br>**prerequisites:**
 - just a modern web browser
-- a local dev server (vs code live server perhaps? or npx serve)
+- a local dev server (vs code live server perhaps? or npx serve, up to you)
 
 <br>**installation**
 <br>clone the repo:
