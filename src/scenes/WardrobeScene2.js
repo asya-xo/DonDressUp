@@ -23,48 +23,53 @@ export class WardrobeScene2 extends Phaser.Scene {
   }
 
   create() {
+
+
     const width = this.scale.width;
     const height = this.scale.height;
+    
+      //positioning the girl
+    const girlY = height * 0.45;
 
     this.add.rectangle(0, 0, width, height, 0xff9ec8).setOrigin(0);
     
     //Adding the closet
     this.add.image(width * 0.65, height * 0.5, 'closet');
     
-    this.girl = this.add.image(width * 0.28, height * 0.5, 'body');
+    this.girl = this.add.image(width * 0.28, girlY, 'body');
 
-    this.girlSunglasses = this.add.image(width * 0.28, height * 0.5, 'sunglasses_pink');
+    this.girlSunglasses = this.add.image(width * 0.28, girlY, 'sunglasses_pink');
     this.girlSunglasses.setVisible(false);
 
     //Adding the top overlay on girl hidden by default, 
-    this.girlTop = this.add.image(width * 0.28, height * 0.5, 'top1');
+    this.girlTop = this.add.image(width * 0.28, girlY, 'top1');
     this.girlTop.setVisible(false);
 
     // Top 2 overlay on girl hidden by default
-    this.girlTop2 = this.add.image(width * 0.28, height * 0.5, 'top2');
+    this.girlTop2 = this.add.image(width * 0.28, girlY, 'top2');
     this.girlTop2.setVisible(false);
 
     // Pants overlay on girl hidden by default
-    this.girlPants = this.add.image(width * 0.28, height * 0.5, 'pants1');
+    this.girlPants = this.add.image(width * 0.28, girlY, 'pants1');
     this.girlPants.setVisible(false);
 
     // Hoops overlay on girl hidden by default
-    this.girlHoops = this.add.image(width * 0.28, height * 0.5, 'hoops');
+    this.girlHoops = this.add.image(width * 0.28, girlY, 'hoops');
     this.girlHoops.setVisible(false);
 
     // Skirt overlay  
-    this.girlSkirt = this.add.image(width * 0.28, height * 0.5, 'skirt1');
+    this.girlSkirt = this.add.image(width * 0.28, girlY, 'skirt1');
     this.girlSkirt.setVisible(false);
 
     // Headsets overlay
-    this.girlHeadsets = this.add.image(width * 0.28, height * 0.5, 'headsets');
+    this.girlHeadsets = this.add.image(width * 0.28, girlY, 'headsets');
     this.girlHeadsets.setVisible(false);
 
     // Bear hat overlay
-    this.girlBearhat = this.add.image(width * 0.28, height * 0.5, 'bearhat');
+    this.girlBearhat = this.add.image(width * 0.28, girlY, 'bearhat');
     this.girlBearhat.setVisible(false);
 
-    this.girlShoes = this.add.image(width * 0.28, height * 0.5, 'shoes1');
+    this.girlShoes = this.add.image(width * 0.28, girlY, 'shoes1');
     this.girlShoes.setVisible(false);
 
     const sunglassesColors = [
