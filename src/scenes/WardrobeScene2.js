@@ -15,6 +15,7 @@ export class WardrobeScene2 extends Phaser.Scene {
     this.load.image('top2', 'assets/top_2.png');
     this.load.image('pants1', 'assets/pants_1.png');
     this.load.image('hoops', 'assets/hoops.png');
+    this.load.image('skirt1', 'assets/skirt.png');
   }
 
   create() {
