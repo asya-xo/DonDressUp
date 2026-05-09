@@ -19,6 +19,7 @@ export class WardrobeScene2 extends Phaser.Scene {
     this.load.image('headsets', 'assets/headsets.png');
     this.load.image('bearhat', 'assets/bearhat.png');
     this.load.image('hoops_closet', 'assets/hoops_closet.png');
+    this.load.image('shoes1', 'assets/shoes_1.png');
   }
 
   create() {
@@ -62,6 +63,9 @@ export class WardrobeScene2 extends Phaser.Scene {
     // Bear hat overlay
     this.girlBearhat = this.add.image(width * 0.28, height * 0.5, 'bearhat');
     this.girlBearhat.setVisible(false);
+
+    this.girlShoes = this.add.image(width * 0.28, height * 0.5, 'shoes1');
+    this.girlShoes.setVisible(false);
 
     const sunglassesColors = [
      0xff9ec8, // pink
@@ -303,7 +307,21 @@ topItem.on('pointerdown', () => {
   }
 });
  
+// Shoes in closet
+const shoesItem = this.add.image(width * 0.72, height * 0.55, 'shoes1')
+  .setScale(0.4)
+  .setInteractive({ useHandCursor: true, pixelPerfect: true });
 
+shoesItem.on('pointerdown', () => {
+    console.log('shoes clicked!', this.equippedItems.shoes); 
+  if (this.equippedItems.shoes) {
+    this.girlShoes.setVisible(false);
+    this.equippedItems.shoes = null;
+  } else {
+    this.girlShoes.setVisible(true);
+    this.equippedItems.shoes = 'shoes1';
+  }
+});
 
 
     // Back button
