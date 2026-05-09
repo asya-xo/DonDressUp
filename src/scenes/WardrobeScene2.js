@@ -18,6 +18,7 @@ export class WardrobeScene2 extends Phaser.Scene {
     this.load.image('skirt1', 'assets/skirt.png');
     this.load.image('headsets', 'assets/headsets.png');
     this.load.image('bearhat', 'assets/bearhat.png');
+    this.load.image('hoops_closet', 'assets/hoops_closet.png');
   }
 
   create() {
@@ -71,7 +72,7 @@ export class WardrobeScene2 extends Phaser.Scene {
     ];
 
 // Glasses in closet
-const glassesItem = this.add.image(width * 0.58, height * 0.3, 'sunglasses_pink')
+const glassesItem = this.add.image(width * 0.55, height * 0.27, 'sunglasses_pink')
   .setScale(0.3)
   .setInteractive({ useHandCursor: true, pixelPerfect: true });
 
@@ -106,11 +107,8 @@ glassesItem.on('pointerdown', () => {
 });
 
 // Hoops in closet
-this.add.text(width * 0.63, height * 0.24, 'hoops', {
-  fontSize: '11px', color: '#ffffff', fontFamily: 'Arial'
-}).setOrigin(0.5);
-const hoopsItem = this.add.image(width * 0.63, height * 0.3, 'hoops')
-  .setScale(0.3)
+const hoopsItem = this.add.image(width * 0.61, height * 0.20, 'hoops_closet')
+  .setScale(0.11)
   .setInteractive({ useHandCursor: true, pixelPerfect: true });
 
 hoopsItem.on('pointerdown', () => {
