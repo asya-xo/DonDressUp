@@ -14,6 +14,7 @@ export class WardrobeScene2 extends Phaser.Scene {
     this.load.image('top1', 'assets/top_1.png');
     this.load.image('top2', 'assets/top_2.png');
     this.load.image('pants1', 'assets/pants_1.png');
+    this.load.image('hoops', 'assets/hoops.png');
   }
 
   create() {
@@ -41,6 +42,10 @@ export class WardrobeScene2 extends Phaser.Scene {
     // Pants overlay on girl hidden by default
     this.girlPants = this.add.image(width * 0.28, height * 0.5, 'pants1');
     this.girlPants.setVisible(false);
+
+    // Hoops overlay on girl hidden by default
+    this.girlHoops = this.add.image(width * 0.28, height * 0.5, 'hoops');
+    this.girlHoops.setVisible(false);
 
     const sunglassesColors = [
      0xff9ec8, // pink
@@ -82,6 +87,24 @@ glassesItem.on('pointerdown', () => {
     this.girlSunglasses.setVisible(true);
     this.equippedItems.sunglasses = 'sunglasses_pink';
     glassesPalette.setVisible(true);
+  }
+});
+
+// Hoops in closet
+this.add.text(width * 0.63, height * 0.24, 'hoops', {
+  fontSize: '11px', color: '#ffffff', fontFamily: 'Arial'
+}).setOrigin(0.5);
+const hoopsItem = this.add.image(width * 0.63, height * 0.3, 'hoops')
+  .setScale(0.3)
+  .setInteractive({ useHandCursor: true, pixelPerfect: true });
+
+hoopsItem.on('pointerdown', () => {
+  if (this.equippedItems.hoops) {
+    this.girlHoops.setVisible(false);
+    this.equippedItems.hoops = null;
+  } else {
+    this.girlHoops.setVisible(true);
+    this.equippedItems.hoops = 'hoops';
   }
 });
 
