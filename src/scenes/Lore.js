@@ -10,6 +10,7 @@ export class Lore extends Phaser.Scene {
     this.load.image('ty', 'assets/thanks.png');
     this.load.image('backB', 'assets/back_button.png');
     this.load.audio('buttonSD', 'assets/button_sound.mp3');
+    this.load.image('love', 'assets/made_w_love.png');
   }
 
   create () {
@@ -19,15 +20,19 @@ export class Lore extends Phaser.Scene {
 
     const techS = this.add.image(0, 0, 'techS');
     const ty = this.add.image(0, 0, 'ty');
+    const love = this.add.image(0, 0, 'love');
 
     techS.setOrigin(0.5, 0);
     ty.setOrigin(0.5, 0);
+    love.setOrigin(0.5, 0);
 
     techS.setPosition(width / 2, 120);
     ty.setPosition(width / 2, techS.y + techS.displayHeight);
+    love.setPosition(width * 0.20, height * 0.05);
+  
 
     this.tweens.add({
-    targets: [techS, ty],
+    targets: [techS, ty, love],
     y: '-=10',
     duration: 1200,
     ease: 'Sine.easeInOut',
