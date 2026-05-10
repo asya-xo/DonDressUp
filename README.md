@@ -1,4 +1,4 @@
-<br>**name:** DON dressup 🩷 
+<br>**name:** DON dressup 
 <br>**what is it:** a dress up webbrowser game 
 <br>**made with:** javacript (code), phaser (game engine), canva (buttons, signs), krita (clothing assets + model) 
 <br>**lore:** made for our little cousin who loves fashion very much
@@ -11,7 +11,8 @@
 <br>**try it out!**
 <br>**prerequisites:**
 - just a modern web browser
-- a local dev server (vs code live server perhaps? or npx serve, up to you)
+- a local dev server (vs code live server or 
+npx serve)
 
 <br>**installation**
 <br>clone the repo:
