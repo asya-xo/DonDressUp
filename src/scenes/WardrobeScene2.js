@@ -15,9 +15,6 @@ export class WardrobeScene2 extends Phaser.Scene {
     this.load.image('top2', 'assets/top_2.png');
     this.load.image('pants1', 'assets/pants_1.png');
     this.load.image('hoops', 'assets/hoops.png');
-    this.load.image('skirt1', 'assets/skirt.png');
-    this.load.image('headsets', 'assets/headsets.png');
-    this.load.image('bearhat', 'assets/bearhat.png');
     this.load.image('hoops_closet', 'assets/hoops_closet.png');
     this.load.image('shoes1', 'assets/shoes_1.png');
   }
@@ -56,18 +53,6 @@ export class WardrobeScene2 extends Phaser.Scene {
     // Hoops overlay on girl hidden by default
     this.girlHoops = this.add.image(width * 0.28, girlY, 'hoops');
     this.girlHoops.setVisible(false);
-
-    // Skirt overlay  
-    this.girlSkirt = this.add.image(width * 0.28, girlY, 'skirt1');
-    this.girlSkirt.setVisible(false);
-
-    // Headsets overlay
-    this.girlHeadsets = this.add.image(width * 0.28, girlY, 'headsets');
-    this.girlHeadsets.setVisible(false);
-
-    // Bear hat overlay
-    this.girlBearhat = this.add.image(width * 0.28, girlY, 'bearhat');
-    this.girlBearhat.setVisible(false);
 
     this.girlShoes = this.add.image(width * 0.28, girlY, 'shoes1');
     this.girlShoes.setVisible(false);
@@ -130,39 +115,6 @@ hoopsItem.on('pointerdown', () => {
   }
 });
 
-// Headsets in closet
-const headsetsItem = this.add.image(width * 0.7, height * 0.3, 'headsets')
-  .setScale(0.3)
-  .setInteractive({ useHandCursor: true, pixelPerfect: true });
-
-headsetsItem.on('pointerdown', () => {
-  if (this.equippedItems.headsets) {
-    this.girlHeadsets.setVisible(false);
-    this.equippedItems.headsets = null;
-    headsetsItem.clearTint();
-  } else {
-    this.girlHeadsets.setVisible(true);
-    this.equippedItems.headsets = 'headsets';
-  }
-});
-
-// Bear hat in closet
-
-const bearhatItem = this.add.image(width * 0.77, height * 0.25, 'bearhat')
-.setScale(0.2)
-  .setInteractive({ useHandCursor: true, pixelPerfect: true });
-
-bearhatItem.on('pointerdown', () => {
-  if (this.equippedItems.bearhat) {
-    this.girlBearhat.setVisible(false);
-    this.equippedItems.bearhat = null;
-    bearhatItem.clearTint();
-  } else {
-    this.girlBearhat.setVisible(true);
-    this.equippedItems.bearhat = 'bearhat';
-  }
-});
-
     // Color swatches for tops!!
 const topColors = [
   0xffffff, // white
@@ -218,40 +170,6 @@ pantsItem.on('pointerdown', () => {
   }
 });
 
-// Skirt in closet — placed beside the pants
-const skirtItem = this.add.image(width * 0.65, height * 0.55, 'skirt1')
-  .setScale(0.4)
-  .setInteractive({ useHandCursor: true, pixelPerfect: true });
-
-// Skirt color palette (hidden by default)
-const skirtPalette = this.add.container(width * 0.35, height * 0.85);
-skirtPalette.setVisible(false);
-
-topColors.forEach((color, i) => {
-  const swatch = this.add.circle(i * 30 - 75, 0, 12, color)
-    .setInteractive({ useHandCursor: true });
-  swatch.on('pointerdown', () => {
-    this.girlSkirt.setTint(color);
-    this.girlSkirt.setVisible(true);
-    skirtItem.setTint(color);
-  });
-  skirtPalette.add(swatch);
-});
-
-// Click skirt to show/hide
-skirtItem.on('pointerdown', () => {
-  if (this.equippedItems.skirt) {
-    this.girlSkirt.setVisible(false);
-    this.equippedItems.skirt = null;
-    skirtPalette.setVisible(false);
-    skirtItem.clearTint();
-  } else {
-    this.girlSkirt.setTint(0xffffff);
-    this.girlSkirt.setVisible(true);
-    this.equippedItems.skirt = 'skirt1';
-    skirtPalette.setVisible(true);
-  }
-});
 
 // Color palette 2 (hidden by default)
 const palette2 = this.add.container(width * 0.35, height * 0.75);
